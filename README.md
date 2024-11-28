@@ -8,8 +8,8 @@ I recently stumbled across an [Hacker News post] that announced an
 It gave me an idea to test how much work it would be to write a minimal [JSON]
 parser library for C++ and this is the result.
 
-I wanted to be as tiny as possible and not to throw exceptions but use result
-type instead.
+I wanted to be as tiny as possible, not to include it's own UTF-8 decoder
+(bring your own) and not to throw exceptions but use result type instead.
 
 [Doxygen generated API documentation.][API]
 
