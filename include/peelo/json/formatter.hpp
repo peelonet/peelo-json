@@ -143,7 +143,7 @@ namespace peelo::json
             case '\\':
             case '/':
               m_result.append(1, '\\');
-              m_result.append(1, c);
+              m_result.append(1, static_cast<char>(c));
               break;
 
             default:
@@ -151,7 +151,7 @@ namespace peelo::json
               {
                 char buffer[7];
 
-                std::snprintf(buffer, 7, "\\u%04x", c);
+                std::snprintf(buffer, 7, "\\u%04x", static_cast<int>(c));
                 m_result.append(buffer);
               } else {
                 m_result.append(1, static_cast<char>(c));
