@@ -743,10 +743,7 @@ namespace peelo::json
     internal::eat_whitespace(it, end, position);
     if (!internal::eof(it, end))
     {
-      return parse_result::error({
-        position,
-        "TODO: Describe me."
-      });
+      return parse_result::error({ position, "Unexpected input." });
     }
 
     return result;
@@ -771,10 +768,7 @@ namespace peelo::json
     internal::eat_whitespace(it, end, position);
     if (!internal::eof(it, end))
     {
-      return parse_result::error({
-        position,
-        "TODO: Describe me."
-      });
+      return parse_result::error({ position, "Unexpected input." });
     }
 
     return result;

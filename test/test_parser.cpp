@@ -3,6 +3,7 @@
 #include <peelo/json/parser.hpp>
 
 using peelo::json::parse;
+using peelo::json::parse_object;
 using peelo::json::type;
 using peelo::json::type_of;
 
@@ -255,6 +256,30 @@ test_parse_object_with_missing_comma()
   assert(!result.has_value());
 }
 
+static void
+test_parse_value_with_junk()
+{
+  const auto result = parse(U"5 true");
+
+  assert(!result.has_value());
+}
+
+static void
+test_parse_object_with_junk()
+{
+  const auto result = parse_object(U"{\"foo\": \"bar\"} null");
+
+  assert(!result.has_value());
+}
+
+static void
+test_parse_object_with_non_object_input()
+{
+  const auto result = parse_object(U"[1, 2, 3]");
+
+  assert(!result.has_value());
+}
+
 int
 main()
 {
@@ -279,4 +304,7 @@ main()
   test_parse_empty_object();
   test_parse_unterminated_object();
   test_parse_object_with_missing_comma();
+  test_parse_value_with_junk();
+  test_parse_object_with_junk();
+  test_parse_object_with_non_object_input();
 }
