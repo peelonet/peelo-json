@@ -86,8 +86,6 @@ namespace peelo::json
     array(const container_type& elements = container_type())
       : m_elements(elements) {}
 
-    array(const array&) = default;
-
     inline enum type type() const
     {
       return type::array;
@@ -113,8 +111,6 @@ namespace peelo::json
     boolean(value_type value = false)
       : m_value(value) {}
 
-    boolean(const boolean&) = default;
-
     inline enum type type() const
     {
       return type::boolean;
@@ -139,8 +135,6 @@ namespace peelo::json
 
     number(value_type value = 0.0)
       : m_value(value) {}
-
-    number(const number&) = default;
 
     inline enum type type() const
     {
@@ -169,8 +163,6 @@ namespace peelo::json
     object(const container_type& properties = container_type())
       : m_properties(properties) {}
 
-    object(const object&) = default;
-
     inline enum type type() const
     {
       return type::object;
@@ -197,8 +189,6 @@ namespace peelo::json
 
     string(const_reference value = value_type())
       : m_value(value) {}
-
-    string(const string&) = default;
 
     inline enum type type() const
     {
