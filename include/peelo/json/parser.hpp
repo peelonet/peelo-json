@@ -35,7 +35,8 @@
 
 namespace peelo::json
 {
-  using parse_result = result<value::ptr, parse_error>;
+  using parse_result = result<value, parse_error>;
+  using parse_object_result = result<std::shared_ptr<object>, parse_error>;
 
   namespace internal
   {
@@ -749,7 +750,7 @@ namespace peelo::json
     return result;
   }
 
-  inline parse_result
+  inline parse_object_result
   parse_object(
     const std::u32string& source,
     int line = 1,
@@ -763,14 +764,14 @@ namespace peelo::json
 
     if (!result)
     {
-      return result;
+      return parse_object_result::error(result.error());
     }
     internal::eat_whitespace(it, end, position);
     if (!internal::eof(it, end))
     {
-      return parse_result::error({ position, "Unexpected input." });
+      return parse_object_result::error({ position, "Unexpected input." });
     }
 
-    return result;
+    return parse_object_result::ok(std::static_pointer_cast<object>(result.value()));
   }
 }

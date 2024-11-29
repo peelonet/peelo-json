@@ -2,33 +2,26 @@
 
 #include <peelo/json/parser.hpp>
 
-using peelo::json::parse;
-using peelo::json::parse_object;
-using peelo::json::type;
-using peelo::json::type_of;
+using namespace peelo::json;
 
 static void
 test_parse_false()
 {
-  using peelo::json::boolean;
-
   const auto result = parse(U"false");
 
   assert(result.has_value());
   assert(type_of(*result) == type::boolean);
-  assert(std::static_pointer_cast<boolean>(*result)->value() == false);
+  assert(as<boolean>(*result)->value() == false);
 }
 
 static void
 test_parse_true()
 {
-  using peelo::json::boolean;
-
   const auto result = parse(U"true");
 
   assert(result.has_value());
   assert(type_of(*result) == type::boolean);
-  assert(std::static_pointer_cast<boolean>(*result)->value() == true);
+  assert(as<boolean>(*result)->value() == true);
 }
 
 static void
@@ -36,37 +29,30 @@ test_parse_null()
 {
   const auto result = parse(U"null");
 
+  assert(result.has_value());
   assert(type_of(*result) == type::null);
 }
 
 static void
 test_parse_string()
 {
-  using peelo::json::string;
-
   const auto result = parse(U"\"foo bar\"");
 
   assert(result.has_value());
   assert(type_of(*result) == type::string);
-  assert(
-    !std::static_pointer_cast<string>(*result)->value().compare(U"foo bar")
-  );
+  assert(!as<string>(*result)->value().compare(U"foo bar"));
 }
 
 static void
 test_parse_string_with_escape_sequences()
 {
-  using peelo::json::string;
-
   const auto result = parse(U"\"\\b\\t\\n\\f\\r\\\"\\'\\\\\\/\\u00e4\"");
 
   assert(result.has_value());
   assert(type_of(*result) == type::string);
-  assert(
-    !std::static_pointer_cast<string>(*result)->value().compare(
-      U"\010\011\012\014\015\"'\\/\u00e4"
-    )
-  );
+  assert(!as<string>(*result)->value().compare(
+    U"\010\011\012\014\015\"'\\/\u00e4"
+  ));
 }
 
 static void
@@ -88,61 +74,51 @@ test_parse_string_with_unterminated_escape_sequence()
 static void
 test_parse_integer()
 {
-  using peelo::json::number;
-
   const auto result = parse(U"15");
 
   assert(result.has_value());
   assert(type_of(*result) == type::number);
-  assert(std::static_pointer_cast<number>(*result)->value() == 15);
+  assert(as<number>(*result)->value() == 15);
 }
 
 static void
 test_parse_decimal()
 {
-  using peelo::json::number;
-
   const auto result = parse(U"3.5");
 
   assert(result.has_value());
   assert(type_of(*result) == type::number);
-  assert(std::static_pointer_cast<number>(*result)->value() == 3.5);
+  assert(as<number>(*result)->value() == 3.5);
 }
 
 static void
 test_parse_decimal_with_exponent()
 {
-  using peelo::json::number;
-
   const auto result = parse(U"1.2e15");
 
   assert(result.has_value());
   assert(type_of(*result) == type::number);
-  assert(std::static_pointer_cast<number>(*result)->value() == 1.2e15);
+  assert(as<number>(*result)->value() == 1.2e15);
 }
 
 static void
 test_parse_negative_number()
 {
-  using peelo::json::number;
-
   const auto result = parse(U"-500");
 
   assert(result.has_value());
   assert(type_of(*result) == type::number);
-  assert(std::static_pointer_cast<number>(*result)->value() == -500);
+  assert(as<number>(*result)->value() == -500);
 }
 
 static void
 test_parse_positive_number()
 {
-  using peelo::json::number;
-
   const auto result = parse(U"+28");
 
   assert(result.has_value());
   assert(type_of(*result) == type::number);
-  assert(std::static_pointer_cast<number>(*result)->value() == 28);
+  assert(as<number>(*result)->value() == 28);
 }
 
 static void
@@ -179,25 +155,21 @@ test_parse_out_of_bounds_number()
 static void
 test_parse_array()
 {
-  using peelo::json::array;
-
   const auto result = parse(U"[1, 2, 3]");
 
   assert(result.has_value());
   assert(type_of(*result) == type::array);
-  assert(std::static_pointer_cast<array>(*result)->elements().size() == 3);
+  assert(as<array>(*result)->elements().size() == 3);
 }
 
 static void
 test_parse_empty_array()
 {
-  using peelo::json::array;
-
   const auto result = parse(U"[]");
 
   assert(result.has_value());
   assert(type_of(*result) == type::array);
-  assert(std::static_pointer_cast<array>(*result)->elements().empty());
+  assert(as<array>(*result)->elements().empty());
 }
 
 static void
@@ -225,19 +197,17 @@ test_parse_object()
 
   assert(result.has_value());
   assert(type_of(*result) == type::object);
-  assert(std::static_pointer_cast<object>(*result)->properties().size() == 1);
+  assert(as<object>(*result)->properties().size() == 1);
 }
 
 static void
 test_parse_empty_object()
 {
-  using peelo::json::object;
-
   const auto result = parse(U"{}");
 
   assert(result.has_value());
   assert(type_of(*result) == type::object);
-  assert(std::static_pointer_cast<object>(*result)->properties().empty());
+  assert(as<object>(*result)->properties().empty());
 }
 
 static void

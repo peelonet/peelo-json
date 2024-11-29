@@ -45,46 +45,52 @@ namespace peelo::json
     string = 5,
   };
 
-  /**
-   * Abstract base class for all JSON values.
-   */
-  class value
+  namespace internal
   {
-  public:
-    using ptr = std::shared_ptr<value>;
-
-    value() = default;
-    value(const value&) = delete;
-    value(value&&) = delete;
-    void operator=(const value&) = delete;
-    void operator=(value&&) = delete;
-
     /**
-     * Returns type of the value.
+     * Abstract base class for all JSON values.
      */
-    virtual enum type type() const = 0;
-  };
+    class base
+    {
+    public:
+      base() = default;
+      base(const base&) = delete;
+      base(base&&) = delete;
+      void operator=(const base&) = delete;
+      void operator=(base&&) = delete;
+
+      /**
+       * Returns type of the value.
+       */
+      virtual enum type type() const = 0;
+    };
+  }
 
   /**
-   * Returns type of given value.
+   * Representation of JSON value. If the pointer is `null`, then it represents
+   * null value.
    */
-  inline enum type
-  type_of(const value::ptr& value)
-  {
-    return value ? value->type() : type::null;
-  }
+  using value = std::shared_ptr<internal::base>;
 
   /**
    * Representation of JSON array.
    */
-  class array final : public value
+  class array final : public internal::base
   {
   public:
-    using value_type = ptr;
+    using value_type = value;
     using container_type = std::vector<value_type>;
 
     array(const container_type& elements = container_type())
       : m_elements(elements) {}
+
+    array(std::initializer_list<value_type> init)
+      : m_elements(init) {}
+
+    static std::shared_ptr<array> make(std::initializer_list<value_type> init)
+    {
+      return std::make_shared<array>(init);
+    }
 
     inline enum type type() const
     {
@@ -103,13 +109,18 @@ namespace peelo::json
   /**
    * Representation of JSON boolean.
    */
-  class boolean final : public value
+  class boolean final : public internal::base
   {
   public:
     using value_type = bool;
 
     boolean(value_type value = false)
       : m_value(value) {}
+
+    static std::shared_ptr<boolean> make(value_type value)
+    {
+      return std::make_shared<boolean>(value);
+    }
 
     inline enum type type() const
     {
@@ -128,13 +139,18 @@ namespace peelo::json
   /**
    * Representation of JSON number.
    */
-  class number final : public value
+  class number final : public internal::base
   {
   public:
     using value_type = double;
 
     number(value_type value = 0.0)
       : m_value(value) {}
+
+    static std::shared_ptr<number> make(value_type value)
+    {
+      return std::make_shared<number>(value);
+    }
 
     inline enum type type() const
     {
@@ -153,15 +169,24 @@ namespace peelo::json
   /**
    * Representation of JSON object.
    */
-  class object final : public value
+  class object final : public internal::base
   {
   public:
     using key_type = std::u32string;
-    using mapped_type = ptr;
+    using mapped_type = value;
     using container_type = std::unordered_map<key_type, mapped_type>;
+    using value_type = container_type::value_type;
 
     object(const container_type& properties = container_type())
       : m_properties(properties) {}
+
+    object(std::initializer_list<value_type> init)
+      : m_properties(init) {}
+
+    static std::shared_ptr<object> make(std::initializer_list<value_type> init)
+    {
+      return std::make_shared<object>(init);
+    }
 
     inline enum type type() const
     {
@@ -180,22 +205,25 @@ namespace peelo::json
   /**
    * Representation of JSON string.
    */
-  class string final : public value
+  class string final : public internal::base
   {
   public:
     using value_type = std::u32string;
-    using reference = value_type&;
-    using const_reference = const value_type&;
 
-    string(const_reference value = value_type())
+    string(const value_type& value = value_type())
       : m_value(value) {}
+
+    static std::shared_ptr<string> make(const value_type& value)
+    {
+      return std::make_shared<string>(value);
+    }
 
     inline enum type type() const
     {
       return type::string;
     }
 
-    inline const_reference value() const
+    inline const value_type& value() const
     {
       return m_value;
     }
@@ -203,4 +231,25 @@ namespace peelo::json
   private:
     const value_type m_value;
   };
+
+  /**
+   * Returns type of given value.
+   */
+  inline enum type
+  type_of(const value& v)
+  {
+    return v ? v->type() : type::null;
+  }
+
+  /**
+   * Shortcut for `std::static_pointer_cast` function. Notice that no type
+   * checking is done, so you need to do that yourself first with `type_of`
+   * function.
+   */
+  template<class T>
+  inline std::shared_ptr<T>
+  as(const value& v)
+  {
+    return std::static_pointer_cast<T>(v);
+  }
 }

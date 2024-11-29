@@ -170,11 +170,11 @@ namespace peelo::json
    * Converts given JSON value into ASCII string.
    */
   inline std::string
-  format(const value::ptr& value)
+  format(const value& v)
   {
     internal::formatter fmt;
 
-    accept(fmt, value);
+    accept(fmt, v);
 
     return fmt.result();
   }

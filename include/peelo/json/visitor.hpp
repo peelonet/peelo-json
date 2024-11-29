@@ -52,20 +52,16 @@ namespace peelo::json
   };
 
   inline void
-  accept(class visitor& visitor, const value::ptr& value)
+  accept(class visitor& visitor, const value& v)
   {
-    switch (type_of(value))
+    switch (type_of(v))
     {
       case type::array:
-        visitor.visit_array(
-          std::static_pointer_cast<array>(value)->elements()
-        );
+        visitor.visit_array(static_cast<const array*>(&*v)->elements());
         break;
 
       case type::boolean:
-        visitor.visit_boolean(
-          std::static_pointer_cast<boolean>(value)->value()
-        );
+        visitor.visit_boolean(static_cast<const boolean*>(&*v)->value());
         break;
 
       case type::null:
@@ -73,21 +69,15 @@ namespace peelo::json
         break;
 
       case type::number:
-        visitor.visit_number(
-          std::static_pointer_cast<number>(value)->value()
-        );
+        visitor.visit_number(static_cast<const number*>(&*v)->value());
         break;
 
       case type::object:
-        visitor.visit_object(
-          std::static_pointer_cast<object>(value)->properties()
-        );
+        visitor.visit_object(static_cast<const object*>(&*v)->properties());
         break;
 
       case type::string:
-        visitor.visit_string(
-          std::static_pointer_cast<string>(value)->value()
-        );
+        visitor.visit_string(static_cast<const string*>(&*v)->value());
         break;
     }
   }
