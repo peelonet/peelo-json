@@ -47,7 +47,7 @@ main()
   {
     if (peelo::json::type_of(*result) == peelo::json::type::array)
     {
-      const auto array = std::static_pointer_cast<peelo::json::array>(*result);
+      const auto array = peelo::json::as<peelo::json::array>(*result);
 
       std::cout << "Given input produced an array." << std::endl;
       std::cout << "It has " << array->elements().size() << " elements." << std::endl;
