@@ -1,128 +1,114 @@
-#include <cassert>
-
+#include <catch2/catch_test_macros.hpp>
 #include <peelo/json/parser.hpp>
 
 using namespace peelo::json;
 
-static void
-test_parse_false()
+TEST_CASE("False boolean value is parsed", "[parse]")
 {
   const auto result = parse(U"false");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::boolean);
-  assert(as<boolean>(*result)->value() == false);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::boolean);
+  REQUIRE(as<boolean>(*result)->value() == false);
 }
 
-static void
-test_parse_true()
+TEST_CASE("True boolean value is parsed", "[parse]")
 {
   const auto result = parse(U"true");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::boolean);
-  assert(as<boolean>(*result)->value() == true);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::boolean);
+  REQUIRE(as<boolean>(*result)->value() == true);
 }
 
-static void
-test_parse_null()
+TEST_CASE("Null value is parsed", "[parse]")
 {
   const auto result = parse(U"null");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::null);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::null);
 }
 
-static void
-test_parse_string()
+TEST_CASE("String value is parsed", "[parse]")
 {
   const auto result = parse(U"\"foo bar\"");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::string);
-  assert(!as<string>(*result)->value().compare(U"foo bar"));
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::string);
+  REQUIRE(!as<string>(*result)->value().compare(U"foo bar"));
 }
 
-static void
-test_parse_string_with_escape_sequences()
+TEST_CASE("String value with escape sequences is parsed", "[parse]")
 {
   const auto result = parse(U"\"\\b\\t\\n\\f\\r\\\"\\'\\\\\\/\\u00e4\"");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::string);
-  assert(!as<string>(*result)->value().compare(
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::string);
+  REQUIRE(!as<string>(*result)->value().compare(
     U"\010\011\012\014\015\"'\\/\u00e4"
   ));
 }
 
-static void
-test_parse_unterminated_string()
+TEST_CASE("Unterminated string value produces error", "[parse]")
 {
   const auto result = parse(U"\"foo bar");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_string_with_unterminated_escape_sequence()
+TEST_CASE("String with unterminated escape sequence produces error", "[parse]")
 {
   const auto result = parse(U"\\u");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_integer()
+TEST_CASE("Integer number is parsed", "[parse]")
 {
   const auto result = parse(U"15");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::number);
-  assert(as<number>(*result)->value() == 15);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::number);
+  REQUIRE(as<number>(*result)->value() == 15);
 }
 
-static void
-test_parse_decimal()
+TEST_CASE("Decimal number is parsed", "[parse]")
 {
   const auto result = parse(U"3.5");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::number);
-  assert(as<number>(*result)->value() == 3.5);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::number);
+  REQUIRE(as<number>(*result)->value() == 3.5);
 }
 
-static void
-test_parse_decimal_with_exponent()
+TEST_CASE("Decimal number with exponent is parsed", "[parse]")
 {
   const auto result = parse(U"1.2e15");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::number);
-  assert(as<number>(*result)->value() == 1.2e15);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::number);
+  REQUIRE(as<number>(*result)->value() == 1.2e15);
 }
 
-static void
-test_parse_negative_number()
+TEST_CASE("Negative number is parsed", "[parse]")
 {
   const auto result = parse(U"-500");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::number);
-  assert(as<number>(*result)->value() == -500);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::number);
+  REQUIRE(as<number>(*result)->value() == -500);
 }
 
-static void
-test_parse_positive_number()
+TEST_CASE("Positive number is parsed", "[parse]")
 {
   const auto result = parse(U"+28");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::number);
-  assert(as<number>(*result)->value() == 28);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::number);
+  REQUIRE(as<number>(*result)->value() == 28);
 }
 
-static void
-test_parse_out_of_bounds_number()
+TEST_CASE("Number out of bounds produces error", "[parse]")
 {
   const auto result = parse(
     U"123456789"
@@ -149,132 +135,90 @@ test_parse_out_of_bounds_number()
     U"123456789"
   );
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_array()
+TEST_CASE("Array is parsed", "[parse]")
 {
   const auto result = parse(U"[1, 2, 3]");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::array);
-  assert(as<array>(*result)->elements().size() == 3);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::array);
+  REQUIRE(as<array>(*result)->elements().size() == 3);
 }
 
-static void
-test_parse_empty_array()
+TEST_CASE("Empty array is parsed", "[parse]")
 {
   const auto result = parse(U"[]");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::array);
-  assert(as<array>(*result)->elements().empty());
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::array);
+  REQUIRE(as<array>(*result)->elements().empty());
 }
 
-static void
-test_parse_unterminated_array()
+TEST_CASE("Unterminated array produces error", "[parse]")
 {
   const auto result = parse(U"[1, 2");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_array_with_missing_comma()
+TEST_CASE("Array with missing comma produces error", "[parse]")
 {
   const auto result = parse(U"[1 2");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_object()
+TEST_CASE("Object is parsed", "[parse]")
 {
-  using peelo::json::object;
-
   const auto result = parse(U"{\"foo\": \"bar\"}");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::object);
-  assert(as<object>(*result)->properties().size() == 1);
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::object);
+  REQUIRE(as<object>(*result)->properties().size() == 1);
 }
 
-static void
-test_parse_empty_object()
+TEST_CASE("Empty object is parsed", "[parse]")
 {
   const auto result = parse(U"{}");
 
-  assert(result.has_value());
-  assert(type_of(*result) == type::object);
-  assert(as<object>(*result)->properties().empty());
+  REQUIRE(result.has_value());
+  REQUIRE(type_of(*result) == type::object);
+  REQUIRE(as<object>(*result)->properties().empty());
 }
 
-static void
-test_parse_unterminated_object()
+TEST_CASE("Unterminated object produces error", "[parse]")
 {
   const auto result = parse(U"{\"foo\": \"bar\"");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_object_with_missing_comma()
+TEST_CASE("Object with missing comma produces error", "[parse]")
 {
   const auto result = parse(U"{\"foo\": \"bar\" \"bar\": \"foo\"}");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_value_with_junk()
+TEST_CASE("Value with trailing garbage produces error", "[parse]")
 {
   const auto result = parse(U"5 true");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_object_with_junk()
+TEST_CASE("Object with trailing garbage produces error", "[parse_object]")
 {
   const auto result = parse_object(U"{\"foo\": \"bar\"} null");
 
-  assert(!result.has_value());
+  REQUIRE(!result.has_value());
 }
 
-static void
-test_parse_object_with_non_object_input()
+TEST_CASE("Parsing object with non-object input produces error", "[parse]")
 {
   const auto result = parse_object(U"[1, 2, 3]");
 
-  assert(!result.has_value());
-}
-
-int
-main()
-{
-  test_parse_false();
-  test_parse_true();
-  test_parse_null();
-  test_parse_string();
-  test_parse_string_with_escape_sequences();
-  test_parse_unterminated_string();
-  test_parse_string_with_unterminated_escape_sequence();
-  test_parse_integer();
-  test_parse_decimal();
-  test_parse_decimal_with_exponent();
-  test_parse_negative_number();
-  test_parse_positive_number();
-  test_parse_out_of_bounds_number();
-  test_parse_array();
-  test_parse_empty_array();
-  test_parse_unterminated_array();
-  test_parse_array_with_missing_comma();
-  test_parse_object();
-  test_parse_empty_object();
-  test_parse_unterminated_object();
-  test_parse_object_with_missing_comma();
-  test_parse_value_with_junk();
-  test_parse_object_with_junk();
-  test_parse_object_with_non_object_input();
+  REQUIRE(!result.has_value());
 }

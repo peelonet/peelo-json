@@ -1,5 +1,4 @@
-#include <cassert>
-
+#include <catch2/catch_test_macros.hpp>
 #include <peelo/json/visitor.hpp>
 
 using namespace peelo::json;
@@ -53,8 +52,7 @@ public:
   }
 };
 
-int
-main()
+TEST_CASE("Visitor should detect JSON value types", "[accept]")
 {
   my_visitor visitor;
 
@@ -66,10 +64,10 @@ main()
   accept(visitor, object::make({}));
   accept(visitor, string::make(U""));
 
-  assert(visitor.array_count == 1);
-  assert(visitor.boolean_count == 2);
-  assert(visitor.null_count == 1);
-  assert(visitor.number_count == 1);
-  assert(visitor.object_count == 1);
-  assert(visitor.string_count == 1);
+  REQUIRE(visitor.array_count == 1);
+  REQUIRE(visitor.boolean_count == 2);
+  REQUIRE(visitor.null_count == 1);
+  REQUIRE(visitor.number_count == 1);
+  REQUIRE(visitor.object_count == 1);
+  REQUIRE(visitor.string_count == 1);
 }
