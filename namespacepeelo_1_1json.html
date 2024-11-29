@@ -68,15 +68,17 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeelo_1_1json_1_1string.html">string</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeelo_1_1json_1_1value.html">value</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpeelo_1_1json_1_1visitor.html">visitor</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aa3e1089b9b365753883053251633e9ed" id="r_aa3e1089b9b365753883053251633e9ed"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">parse_result</a> = result&lt; <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a>, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a> &gt;</td></tr>
-<tr class="separator:aa3e1089b9b365753883053251633e9ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e387b486d3f79f00edf4faabdbb2f98" id="r_a1e387b486d3f79f00edf4faabdbb2f98"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a1e387b486d3f79f00edf4faabdbb2f98">parse_result</a> = result&lt; <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a>, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a> &gt;</td></tr>
+<tr class="separator:a1e387b486d3f79f00edf4faabdbb2f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045224630eb72ab0530b95ab4f4e8bfc" id="r_a045224630eb72ab0530b95ab4f4e8bfc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a045224630eb72ab0530b95ab4f4e8bfc">parse_object_result</a> = result&lt; std::shared_ptr&lt; <a class="el" href="classpeelo_1_1json_1_1object.html">object</a> &gt;, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a> &gt;</td></tr>
+<tr class="separator:a045224630eb72ab0530b95ab4f4e8bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0a462ed20b63c4afeede091d60fb645" id="r_ac0a462ed20b63c4afeede091d60fb645"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> = std::shared_ptr&lt; internal::base &gt;</td></tr>
+<tr class="separator:ac0a462ed20b63c4afeede091d60fb645"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -94,29 +96,61 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a14ec8784484d16609a7576468cd0d8c3" id="r_a14ec8784484d16609a7576468cd0d8c3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a14ec8784484d16609a7576468cd0d8c3">format</a> (const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;<a class="el" href="classpeelo_1_1json_1_1value.html">value</a>)</td></tr>
-<tr class="separator:a14ec8784484d16609a7576468cd0d8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2819d1e653aeac643ab6f590c0ed4c6" id="r_ad2819d1e653aeac643ab6f590c0ed4c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">parse_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#ad2819d1e653aeac643ab6f590c0ed4c6">parse</a> (const std::u32string &amp;source, int line=1, int column=1)</td></tr>
+<tr class="memitem:a2e958fb0c74615ebd6f8cecba380605c" id="r_a2e958fb0c74615ebd6f8cecba380605c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a2e958fb0c74615ebd6f8cecba380605c">format</a> (const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;v)</td></tr>
+<tr class="separator:a2e958fb0c74615ebd6f8cecba380605c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2819d1e653aeac643ab6f590c0ed4c6" id="r_ad2819d1e653aeac643ab6f590c0ed4c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepeelo_1_1json.html#a1e387b486d3f79f00edf4faabdbb2f98">parse_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#ad2819d1e653aeac643ab6f590c0ed4c6">parse</a> (const std::u32string &amp;source, int line=1, int column=1)</td></tr>
 <tr class="separator:ad2819d1e653aeac643ab6f590c0ed4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5af23cfcb39d569786b78098e7fdef65" id="r_a5af23cfcb39d569786b78098e7fdef65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">parse_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a5af23cfcb39d569786b78098e7fdef65">parse_object</a> (const std::u32string &amp;source, int line=1, int column=1)</td></tr>
-<tr class="separator:a5af23cfcb39d569786b78098e7fdef65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5056aa50600d53ac25e59da2d54c77bf" id="r_a5056aa50600d53ac25e59da2d54c77bf"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="namespacepeelo_1_1json.html#a1ce239dbe878761c3c0cccebd14daa07">type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a5056aa50600d53ac25e59da2d54c77bf">type_of</a> (const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;<a class="el" href="classpeelo_1_1json_1_1value.html">value</a>)</td></tr>
-<tr class="separator:a5056aa50600d53ac25e59da2d54c77bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af43ae9ad72fe590ad745064e6c39bd3b" id="r_af43ae9ad72fe590ad745064e6c39bd3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#af43ae9ad72fe590ad745064e6c39bd3b">accept</a> (class <a class="el" href="classpeelo_1_1json_1_1visitor.html">visitor</a> &amp;<a class="el" href="classpeelo_1_1json_1_1visitor.html">visitor</a>, const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;<a class="el" href="classpeelo_1_1json_1_1value.html">value</a>)</td></tr>
-<tr class="separator:af43ae9ad72fe590ad745064e6c39bd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0982995fa72b9c6c4ff70c088b9ced7e" id="r_a0982995fa72b9c6c4ff70c088b9ced7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacepeelo_1_1json.html#a045224630eb72ab0530b95ab4f4e8bfc">parse_object_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a0982995fa72b9c6c4ff70c088b9ced7e">parse_object</a> (const std::u32string &amp;source, int line=1, int column=1)</td></tr>
+<tr class="separator:a0982995fa72b9c6c4ff70c088b9ced7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53863717b75138d0eb40d80169ba06ab" id="r_a53863717b75138d0eb40d80169ba06ab"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="namespacepeelo_1_1json.html#a1ce239dbe878761c3c0cccebd14daa07">type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a53863717b75138d0eb40d80169ba06ab">type_of</a> (const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;v)</td></tr>
+<tr class="separator:a53863717b75138d0eb40d80169ba06ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e524e6582d620a0921eeea85f6fed1" id="r_a46e524e6582d620a0921eeea85f6fed1"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a46e524e6582d620a0921eeea85f6fed1"><td class="memTemplItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#a46e524e6582d620a0921eeea85f6fed1">as</a> (const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;v)</td></tr>
+<tr class="separator:a46e524e6582d620a0921eeea85f6fed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac17e3297398a89db13512556247a3231" id="r_ac17e3297398a89db13512556247a3231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepeelo_1_1json.html#ac17e3297398a89db13512556247a3231">accept</a> (class <a class="el" href="classpeelo_1_1json_1_1visitor.html">visitor</a> &amp;<a class="el" href="classpeelo_1_1json_1_1visitor.html">visitor</a>, const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;v)</td></tr>
+<tr class="separator:ac17e3297398a89db13512556247a3231"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="aa3e1089b9b365753883053251633e9ed" name="aa3e1089b9b365753883053251633e9ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3e1089b9b365753883053251633e9ed">&#9670;&#160;</a></span>parse_result</h2>
+<a id="a045224630eb72ab0530b95ab4f4e8bfc" name="a045224630eb72ab0530b95ab4f4e8bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045224630eb72ab0530b95ab4f4e8bfc">&#9670;&#160;</a></span>parse_object_result</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">peelo::json::parse_result</a> = typedef result&lt;<a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a>, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a>&gt;</td>
+          <td class="memname">using <a class="el" href="namespacepeelo_1_1json.html#a045224630eb72ab0530b95ab4f4e8bfc">peelo::json::parse_object_result</a> = typedef result&lt;std::shared_ptr&lt;<a class="el" href="classpeelo_1_1json_1_1object.html">object</a>&gt;, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e387b486d3f79f00edf4faabdbb2f98" name="a1e387b486d3f79f00edf4faabdbb2f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e387b486d3f79f00edf4faabdbb2f98">&#9670;&#160;</a></span>parse_result</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacepeelo_1_1json.html#a1e387b486d3f79f00edf4faabdbb2f98">peelo::json::parse_result</a> = typedef result&lt;<a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a>, <a class="el" href="classpeelo_1_1json_1_1parse__error.html">parse_error</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0a462ed20b63c4afeede091d60fb645" name="ac0a462ed20b63c4afeede091d60fb645"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0a462ed20b63c4afeede091d60fb645">&#9670;&#160;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">peelo::json::value</a> = typedef std::shared_ptr&lt;internal::base&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representation of JSON value. If the pointer is <code>null</code>, then it represents null value. </p>
 
 </div>
 </div>
@@ -153,8 +187,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af43ae9ad72fe590ad745064e6c39bd3b" name="af43ae9ad72fe590ad745064e6c39bd3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af43ae9ad72fe590ad745064e6c39bd3b">&#9670;&#160;</a></span>accept()</h2>
+<a id="ac17e3297398a89db13512556247a3231" name="ac17e3297398a89db13512556247a3231"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac17e3297398a89db13512556247a3231">&#9670;&#160;</a></span>accept()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,8 +205,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -189,8 +223,37 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a14ec8784484d16609a7576468cd0d8c3" name="a14ec8784484d16609a7576468cd0d8c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14ec8784484d16609a7576468cd0d8c3">&#9670;&#160;</a></span>format()</h2>
+<a id="a46e524e6582d620a0921eeea85f6fed1" name="a46e524e6582d620a0921eeea85f6fed1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46e524e6582d620a0921eeea85f6fed1">&#9670;&#160;</a></span>as()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; T &gt; peelo::json::as </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Shortcut for <code>std::static_pointer_cast</code> function. Notice that no type checking is done, so you need to do that yourself first with <code>type_of</code> function. </p>
+
+</div>
+</div>
+<a id="a2e958fb0c74615ebd6f8cecba380605c" name="a2e958fb0c74615ebd6f8cecba380605c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e958fb0c74615ebd6f8cecba380605c">&#9670;&#160;</a></span>format()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,8 +264,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">std::string peelo::json::format </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -226,7 +289,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">parse_result</a> peelo::json::parse </td>
+          <td class="memname"><a class="el" href="namespacepeelo_1_1json.html#a1e387b486d3f79f00edf4faabdbb2f98">parse_result</a> peelo::json::parse </td>
           <td>(</td>
           <td class="paramtype">const std::u32string &amp;&#160;</td>
           <td class="paramname"><em>source</em>, </td>
@@ -258,8 +321,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5af23cfcb39d569786b78098e7fdef65" name="a5af23cfcb39d569786b78098e7fdef65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5af23cfcb39d569786b78098e7fdef65">&#9670;&#160;</a></span>parse_object()</h2>
+<a id="a0982995fa72b9c6c4ff70c088b9ced7e" name="a0982995fa72b9c6c4ff70c088b9ced7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0982995fa72b9c6c4ff70c088b9ced7e">&#9670;&#160;</a></span>parse_object()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +331,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacepeelo_1_1json.html#aa3e1089b9b365753883053251633e9ed">parse_result</a> peelo::json::parse_object </td>
+          <td class="memname"><a class="el" href="namespacepeelo_1_1json.html#a045224630eb72ab0530b95ab4f4e8bfc">parse_object_result</a> peelo::json::parse_object </td>
           <td>(</td>
           <td class="paramtype">const std::u32string &amp;&#160;</td>
           <td class="paramname"><em>source</em>, </td>
@@ -300,8 +363,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5056aa50600d53ac25e59da2d54c77bf" name="a5056aa50600d53ac25e59da2d54c77bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5056aa50600d53ac25e59da2d54c77bf">&#9670;&#160;</a></span>type_of()</h2>
+<a id="a53863717b75138d0eb40d80169ba06ab" name="a53863717b75138d0eb40d80169ba06ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53863717b75138d0eb40d80169ba06ab">&#9670;&#160;</a></span>type_of()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,8 +375,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">enum <a class="el" href="namespacepeelo_1_1json.html#a1ce239dbe878761c3c0cccebd14daa07">type</a> peelo::json::type_of </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classpeelo_1_1json_1_1value.html#a8ba7384f23c7148b765c5dba34f24188">value::ptr</a> &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespacepeelo_1_1json.html#ac0a462ed20b63c4afeede091d60fb645">value</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
