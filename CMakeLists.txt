@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.12)
 
 PROJECT(
   PeeloJson
-  VERSION 0.1.0
+  VERSION 0.2.0
   DESCRIPTION "Header only minimal JSON parser implementation."
   HOMEPAGE_URL "https://github.com/peelonet/peelo-json"
   LANGUAGES CXX
