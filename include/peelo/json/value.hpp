@@ -78,6 +78,7 @@ namespace peelo::json
   class array final : public internal::base
   {
   public:
+    using ptr = std::shared_ptr<array>;
     using value_type = value;
     using container_type = std::vector<value_type>;
 
@@ -87,7 +88,12 @@ namespace peelo::json
     array(std::initializer_list<value_type> init)
       : m_elements(init) {}
 
-    static std::shared_ptr<array> make(std::initializer_list<value_type> init)
+    static inline ptr make(const container_type& elements)
+    {
+      return std::make_shared<array>(elements);
+    }
+
+    static inline ptr make(std::initializer_list<value_type> init)
     {
       return std::make_shared<array>(init);
     }
@@ -112,12 +118,13 @@ namespace peelo::json
   class boolean final : public internal::base
   {
   public:
+    using ptr = std::shared_ptr<boolean>;
     using value_type = bool;
 
     boolean(value_type value = false)
       : m_value(value) {}
 
-    static std::shared_ptr<boolean> make(value_type value)
+    static inline ptr make(value_type value)
     {
       return std::make_shared<boolean>(value);
     }
@@ -142,12 +149,13 @@ namespace peelo::json
   class number final : public internal::base
   {
   public:
+    using ptr = std::shared_ptr<number>;
     using value_type = double;
 
     number(value_type value = 0.0)
       : m_value(value) {}
 
-    static std::shared_ptr<number> make(value_type value)
+    static inline ptr make(value_type value)
     {
       return std::make_shared<number>(value);
     }
@@ -172,6 +180,7 @@ namespace peelo::json
   class object final : public internal::base
   {
   public:
+    using ptr = std::shared_ptr<object>;
     using key_type = std::u32string;
     using mapped_type = value;
     using container_type = std::unordered_map<key_type, mapped_type>;
@@ -183,7 +192,12 @@ namespace peelo::json
     object(std::initializer_list<value_type> init)
       : m_properties(init) {}
 
-    static std::shared_ptr<object> make(std::initializer_list<value_type> init)
+    static inline ptr make(const container_type& properties)
+    {
+      return std::make_shared<object>(properties);
+    }
+
+    static inline ptr make(std::initializer_list<value_type> init)
     {
       return std::make_shared<object>(init);
     }
@@ -208,12 +222,13 @@ namespace peelo::json
   class string final : public internal::base
   {
   public:
+    using ptr = std::shared_ptr<string>;
     using value_type = std::u32string;
 
     string(const value_type& value = value_type())
       : m_value(value) {}
 
-    static std::shared_ptr<string> make(const value_type& value)
+    static inline ptr make(const value_type& value)
     {
       return std::make_shared<string>(value);
     }

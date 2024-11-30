@@ -36,7 +36,7 @@
 namespace peelo::json
 {
   using parse_result = result<value, parse_error>;
-  using parse_object_result = result<std::shared_ptr<object>, parse_error>;
+  using parse_object_result = result<object::ptr, parse_error>;
 
   namespace internal
   {
